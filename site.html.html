@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>İleri Teknoloji Araştırma Grubu | İTAG</title>
+    <meta name="description" content="Üniversite düzeyinde araştırma projeleri ve akademik çalışmalar portfolyosu.">
+
+    <style>
+        /* --- MODERN CSS DEĞİŞKENLERİ & SIFIRLAMA --- */
+        :root {
+            --primary-color: #0ea5e9; /* Ana renk: Modern mavi */
+            --secondary-color: #0f172a; /* Koyu lacivert */
+            --accent-color: #f59e0b; /* Vurgu rengi: Turuncu */
+            --text-dark: #334155;
+            --text-light: #f8fafc;
+            --bg-light: #ffffff;
+            --bg-off-white: #f1f5f9;
+            --transition-speed: 0.3s;
+            --font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Yumuşak kaydırma efekti */
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+
+        /* --- GENEL STILLER & YARDIMCILAR --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--secondary-color);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        /* Başlık altı çizgisi */
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            box-shadow: 0 4px 6px rgba(14, 165, 233, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(15, 23, 42, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* --- NAVBAR (Sabit Üst Menü) --- */
+        #main-header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px); /* Buzlu cam efekti */
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+        }
+
+        .logo span { color: var(--primary-color); }
+
+        #main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        #main-nav ul li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            transition: color var(--transition-speed);
+            position: relative;
+        }
+
+        /* Menü hover efekti */
+        #main-nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--primary-color);
+            transition: all var(--transition-speed);
+            transform: translateX(-50%);
+        }
+
+        #main-nav ul li a:hover::after {
+            width: 80%;
+        }
+
+        /* --- HERO SECTION (Giriş Ekranı) --- */
+        #hero {
+            height: 100vh;
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Paralaks efekti */
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        /* --- HAKKIMIZDA SECTION --- */
+        #hakkimizda {
+            background-color: var(--bg-light);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: transform var(--transition-speed);
+        }
+        
+        .about-img img:hover {
+             transform: scale(1.02);
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        /* --- PROJELER SECTION (Kart Yapısı) --- */
+        #projeler {
+            background-color: var(--bg-off-white);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .card-img {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .card-img img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-category {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-content h3 {
+            font-size: 1.5rem;
+            margin: 0.5rem 0 1rem;
+        }
+
+        /* JS ile açılıp kapanacak detay alanı */
+        .project-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        
+        .project-details.active {
+             /* JS bu class'ı ekleyecek */
+            max-height: 500px; /* Yeterince büyük bir değer */
+            margin-top: 1rem;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        /* --- İLETİŞİM SECTION --- */
+        #iletisim {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+        }
+
+        #iletisim h2, #iletisim h3 {
+            color: var(--text-light);
+        }
+        
+        #iletisim h2::after { background: var(--accent-color); }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info ul {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .contact-info li {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        
+        .contact-info li strong {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 6px;
+            font-family: inherit;
+            background-color: rgba(255,255,255,0.1); /* Yarı saydam inputlar */
+            color: var(--text-light);
+            transition: background-color 0.3s;
+        }
+        
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #0a1120;
+            color: #8892b0;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* --- RESPONSIVE TASARIM (MEDYA SORGULARI) --- */
+        @media (max-width: 900px) {
+             .hero-content h1 { font-size: 2.5rem; }
+             .about-grid { grid-template-columns: 1fr; text-align: center; }
+             .about-img { order: -1; /* Görseli üste al */ margin-bottom: 2rem;}
+             .contact-container { grid-template-columns: 1fr; }
+             #main-nav { display: none; /* Mobil menü bu örnekte basitlik için gizlendi */ }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="container nav-container">
+            <div class="logo">İTAG <span>Ar-Ge</span></div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#hero">Ana Sayfa</a></li>
+                    <li><a href="#hakkimizda">Hakkımızda</a></li>
+                    <li><a href="#projeler">Projeler</a></li>
+                    <li><a href="#iletisim">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container hero-content">
+            <h1>Geleceği Şekillendiren Üniversite Araştırmaları</h1>
+            <p>İleri Teknoloji Araştırma Grubu olarak, yapay zeka, sürdürülebilir enerji ve veri bilimi alanlarında akademik sınırları zorluyoruz.</p>
+            <a href="#projeler" class="btn">Projelerimizi Keşfedin</a>
+        </div>
+    </section>
+
+    <section id="hakkimizda">
+        <div class="container">
+            <h2>Misyonumuz ve Vizyonumuz</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>Akademik Mükemmeliyet ve İnovasyon</h3>
+                    <p>Üniversitemizin Bilgisayar ve Elektrik-Elektronik Mühendisliği bölümleri işbirliğiyle kurulan İTAG, disiplinler arası çalışmayı temel alır.</p>
+                    <br>
+                    <p>Amacımız, teorik bilgiyi pratik uygulamalara dönüştürerek endüstriyel sorunlara yenilikçi çözümler üretmek ve nitelikli araştırmacılar yetiştirmektir. Laboratuvarlarımız en son teknoloji donanımlara sahiptir ve öğrencilerimize araştırma süreçlerine aktif katılım imkanı sunar.</p>
+                    <br>
+                    <a href="#iletisim" class="btn btn-outline">Ekibimizle Tanışın</a>
+                </div>
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1581092921461-39b9d08a9b2a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Üniversite Laboratuvarı">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projeler">
+        <div class="container">
+            <h2>Tamamlanan ve Devam Eden Projeler</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Yapay Zeka Robot">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">Yapay Zeka & Robotik</span>
+                        <h3>Otonom Navigasyon Sistemleri</h3>
+                        <p>Kapalı alanlarda GPS bağımsız hareket edebilen robotik sistemler üzerine yapılan TÜBİTAK destekli projemiz.</p>
+                        <button class="btn details-btn">Detayları Göster</button>
+                        <div class="project-details">
+                            <p>Bu proje kapsamında, LIDAR ve stereo kamera sensör füzyonu kullanılarak SLAM (Eş Zamanlı Konumlandırma ve Haritalama) algoritmaları optimize edilmiştir. Geliştirilen prototip %95 başarı oranıyla engellerden kaçınmaktadır.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Veri Analizi">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">Büyük Veri & IoT</span>
+                        <h3>Akıllı Şehir Sensör Ağı</h3>
+                        <p>Şehir genelindeki çevresel verileri toplayıp analiz eden dağıtık bir IoT ağı tasarımı.</p>
+                        <button class="btn details-btn">Detayları Göster</button>
+                        <div class="project-details">
+                            <p>Hava kalitesi, trafik yoğunluğu ve gürültü seviyelerini ölçen 500+ sensörden gelen veriler, bulut tabanlı bir platformda işlenerek belediyeler için karar destek mekanizması oluşturulmaktadır. Python ve AWS altyapısı kullanılmaktadır.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Yenilenebilir Enerji">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">Sürdürülebilir Enerji</span>
+                        <h3>Hibrit Enerji Depolama</h3>
+                        <p>Güneş ve rüzgar enerjisi için yeni nesil verimli depolama çözümleri araştırması.</p>
+                        <button class="btn details-btn">Detayları Göster</button>
+                        <div class="project-details">
+                            <p>Lityum-iyon piller ile süperkapasitörlerin birlikte kullanıldığı hibrit bir topoloji geliştirilmiştir. Bu sayede enerji dalgalanmalarında %30 daha hızlı tepki süresi ve daha uzun batarya ömrü hedeflenmektedir.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="iletisim">
+        <div class="container">
+            <h2>İletişime Geçin</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Akademik İşbirliği & Başvuru</h3>
+                    <p>Projelerimiz hakkında detaylı bilgi almak, laboratuvarımızı ziyaret etmek veya araştırma grubumuza katılmak için bizimle iletişime geçebilirsiniz.</p>
+                    <ul>
+                        <li><strong>Adres:</strong> Mühendislik Fakültesi, B Blok, Lab 404</li>
+                        <li><strong>E-posta:</strong> info@itag.universite.edu.tr</li>
+                        <li><strong>Telefon:</strong> +90 (212) 123 45 67</li>
+                    </ul>
+                </div>
+                <div class="contact-form">
+                    <form id="researchForm">
+                        <input type="text" placeholder="Adınız Soyadınız" required>
+                        <input type="email" placeholder="Üniversite E-posta Adresiniz" required>
+                        <textarea rows="5" placeholder="Mesajınız veya Proje Öneriniz" required></textarea>
+                        <button type="submit" class="btn" style="background-color: var(--accent-color); width: 100%;">Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 İTAG - İleri Teknoloji Araştırma Grubu. Tüm Hakları Saklıdır. Üniversite Projesi Kapsamında Hazırlanmıştır.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        // 1. PROJE KARTLARINDAKİ "DETAYLARI GÖSTER" BUTONLARI
+        // Tüm detay butonlarını seç
+        const detailButtons = document.querySelectorAll('.details-btn');
+
+        detailButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Butonun hemen sonrasındaki 'project-details' div'ini bul
+                const detailsContent = this.nextElementSibling;
+                
+                // 'active' sınıfını aç/kapat (toggle)
+                detailsContent.classList.toggle('active');
+
+                // Buton metnini duruma göre değiştir
+                if (detailsContent.classList.contains('active')) {
+                    this.textContent = "Detayları Gizle";
+                    this.style.backgroundColor = "#334155"; // Rengi değiştir
+                } else {
+                    this.textContent = "Detayları Göster";
+                    this.style.backgroundColor = ""; // Rengi sıfırla (CSS'ten alır)
+                }
+            });
+        });
+
+
+        // 2. İLETİŞİM FORMU GÖNDERİM SİMÜLASYONU
+        const form = document.getElementById('researchForm');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Sayfanın yenilenmesini engelle
+
+            // Basit bir doğrulama simülasyonu
+            const inputs = form.querySelectorAll('input, textarea');
+            let isValid = true;
+            inputs.forEach(input => {
+                if(input.value.trim() === '') isValid = false;
+            });
+
+            if(isValid) {
+                alert("Mesajınız başarıyla alındı! Akademik ekibimiz en kısa sürede size dönüş yapacaktır.");
+                form.reset(); // Formu temizle
+            }
+        });
+
+        // 3. NAVBAR SCROLL EFEKTİ (İsteğe bağlı profesyonel detay)
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 100) {
+                header.style.padding = '0.5rem 0'; // Aşağı kaydırınca menüyü daralt
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.padding = '1rem 0'; // En üstte genişlet
+                header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.05)';
+            }
+        });
+    </script>
+
+</body>
+</html>
